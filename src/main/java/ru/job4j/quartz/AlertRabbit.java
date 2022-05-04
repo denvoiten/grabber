@@ -22,7 +22,7 @@ public class AlertRabbit {
             data.put("connection", connection);
             JobDetail job = newJob(Rabbit.class).usingJobData(data).build();
             SimpleScheduleBuilder times = simpleSchedule()
-                    .withIntervalInSeconds(Integer.parseInt(getProperties().getProperty("rabbit.interval")))
+                    .withIntervalInSeconds(Integer.parseInt(config.getProperty("rabbit.interval")))
                     .repeatForever();
             Trigger trigger = newTrigger()
                     .startNow()
