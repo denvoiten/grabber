@@ -26,8 +26,7 @@ public class HabrCareerParse {
             String vacancyName = titleElement.text();
             Element dateTitle = row.select(".vacancy-card__date").first();
             Element linkDate = Objects.requireNonNull(dateTitle).child(0);
-            HarbCareerDateTimeParser dateTimeParser = new HarbCareerDateTimeParser();
-            String date = String.valueOf(dateTimeParser.parse(linkDate.attr("datetime")));
+            String date = String.valueOf(new HarbCareerDateTimeParser().parse(linkDate.attr("datetime")));
             String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
             System.out.printf("%s %s Дата публикации: %s%n", vacancyName, link, date.replace("T", " "));
         });
