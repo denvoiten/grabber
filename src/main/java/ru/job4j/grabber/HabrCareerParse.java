@@ -29,7 +29,20 @@ public class HabrCareerParse {
                 String date = String.valueOf(new HarbCareerDateTimeParser().parse(dateTitle.attr("datetime")));
                 String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
                 System.out.printf("%s %s Дата публикации: %s%n", vacancyName, link, date.replace("T", " "));
+                System.out.printf("%s%n%n", HabrCareerParse.retrieveDescription(link));
             });
         }
+    }
+
+    private static String retrieveDescription(String link) {
+        Element description = null;
+        try {
+            Connection connection = Jsoup.connect(link);
+            Document document = connection.get();
+            description = document.select(".style-ugc").first();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return Objects.requireNonNull(description).text();
     }
 }
