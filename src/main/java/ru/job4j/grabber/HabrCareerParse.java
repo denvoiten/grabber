@@ -39,12 +39,17 @@ public class HabrCareerParse implements Parse {
     }
 
     @Override
-    public List<Post> list(String link) throws IOException {
+    public List<Post> list(String link) {
         List<Post> postList = new ArrayList<>();
         for (int i = 1; i <= 5; i++) {
             Connection connection = Jsoup.connect(link + i);
-            Document document = connection.get();
-            Elements rows = document.select(".vacancy-card__inner");
+            Document document = null;
+            try {
+                document = connection.get();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Elements rows = Objects.requireNonNull(document).select(".vacancy-card__inner");
             rows.forEach(row -> postList.add(getPost(row)));
         }
         return postList;
@@ -56,11 +61,11 @@ public class HabrCareerParse implements Parse {
         Element dateTitle = Objects.requireNonNull(row.select(".vacancy-card__date").first()).child(0);
         String vacancyName = titleElement.text();
         String link = String.format("%s%s", SOURCE_LINK, linkElement.attr("href"));
-        LocalDateTime created = new HarbCareerDateTimeParser().parse(dateTitle.attr("datetime"));
+        LocalDateTime created = dateTimeParser.parse(dateTitle.attr("datetime"));
         return new Post(vacancyName, link, retrieveDescription(link), created);
     }
 
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         HabrCareerParse habrCareerParse = new HabrCareerParse(new HarbCareerDateTimeParser());
         habrCareerParse.list(PAGE_LINK).forEach(System.out::println);
     }

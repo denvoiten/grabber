@@ -67,7 +67,7 @@ public class Grabber implements Grab {
             Parse parse = (Parse) map.get("parse");
             try {
                 parse.list(PAGE_LINK).forEach(store::save);
-            } catch (IOException e) {
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -93,7 +93,6 @@ public class Grabber implements Grab {
             }
         }).start();
     }
-
 
     public static void main(String[] args) throws Exception {
         Grabber grab = new Grabber();
