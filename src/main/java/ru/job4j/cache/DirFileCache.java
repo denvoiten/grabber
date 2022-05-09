@@ -22,7 +22,6 @@ public class DirFileCache extends AbstractCache<String, String> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        cache.put(key, new SoftReference<>(rsl));
         return rsl;
     }
 }
