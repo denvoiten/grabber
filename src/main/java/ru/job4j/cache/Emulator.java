@@ -23,11 +23,21 @@ public class Emulator {
         System.out.println("Выбор действий: ");
         String task = scanner.nextLine();
         switch (task) {
-            case "1" -> getCacheDir();
-            case "2" -> loadFileToCache();
-            case "3" -> getDataByName();
-            case "4" -> exit();
-            default -> System.out.println("Выберите задачу от 1 до 4\n");
+            case "1":
+                getCacheDir();
+                break;
+            case "2":
+                loadFileToCache();
+                break;
+            case "3":
+                getDataByName();
+                break;
+            case "4":
+                exit();
+                break;
+            default:
+                System.out.println("Выберите задачу от 1 до 4\n");
+                break;
         }
     }
 
