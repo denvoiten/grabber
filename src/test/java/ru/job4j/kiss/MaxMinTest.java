@@ -16,7 +16,7 @@ public class MaxMinTest {
     List<Integer> integers = List.of(99, 101, 43, 55, 98, 333);
 
     @Test
-    public void thenFindMaxAndThenIs333() {
+    public void whenFindMaxAndThenIs333() {
         int max = maxMin.max(integers, intCompare);
         assertEquals(333, max);
     }
