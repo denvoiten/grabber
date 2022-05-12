@@ -1,6 +1,5 @@
 package ru.job4j.kiss;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Comparator;
@@ -11,9 +10,9 @@ import static org.junit.Assert.assertEquals;
 
 public class MaxMinTest {
 
-    MaxMin maxMin = new MaxMin();
-    Comparator<Integer> intCompare = Integer::compare;
-    List<Integer> integers = List.of(99, 101, 43, 55, 98, 333);
+    private final MaxMin maxMin = new MaxMin();
+    private final Comparator<Integer> intCompare = Integer::compare;
+    private final List<Integer> integers = List.of(99, 101, 43, 55, 98, 333);
 
     @Test
     public void whenFindMaxAndThenIs333() {
