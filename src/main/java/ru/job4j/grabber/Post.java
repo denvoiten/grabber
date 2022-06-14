@@ -82,13 +82,24 @@ public class Post {
         return Objects.hash(id, link);
     }
 
+    public static final String TEMPLATE_WEB = """
+            <table border=1>
+                <tr>
+                    <td><b>%s</b></td>
+                </tr>
+                <tr>
+                    <td><a href=%s>ссылка</td>
+                </tr>
+                <tr>
+                    <td><i>%s</i></td>
+                </tr>
+                <tr>
+                    <td>%s</td>
+                </tr>
+            </table>
+            """;
     @Override
     public String toString() {
-        return "Post{" + "id=" + id
-                + ", title='" + title + '\''
-                + ", link='" + link + '\''
-                + ", description='" + description + '\''
-                + ", created=" + created
-                + '}';
+        return String.format(TEMPLATE_WEB, title, link, created.toString().split("T")[0], description);
     }
 }
