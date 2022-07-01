@@ -4,22 +4,7 @@ import java.time.LocalDateTime;
 import java.util.Objects;
 
 public class Post {
-    public static final String TEMPLATE_WEB = """
-            <table border=1>
-                <tr>
-                    <td><b>%s</b></td>
-                </tr>
-                <tr>
-                    <td><a href=%s>ссылка</td>
-                </tr>
-                <tr>
-                    <td><i>%s</i></td>
-                </tr>
-                <tr>
-                    <td>%s</td>
-                </tr>
-            </table>
-            """;
+    public static final String TEMPLATE = "%s\r\n%s\r\n%s\r\n%s\r\n";
     private int id;
     private String title;
     private String link;
@@ -100,6 +85,6 @@ public class Post {
 
     @Override
     public String toString() {
-        return String.format(TEMPLATE_WEB, title, link, created.toString().split("T")[0], description);
+        return String.format(TEMPLATE, title, link, created.toString().split("T")[0], description);
     }
 }

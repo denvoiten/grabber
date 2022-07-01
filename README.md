@@ -7,7 +7,7 @@
 Система запускается по расписанию.
 
 #### Технологии
->JDK17, Maven, PostgreSQL, JDBC, Quartz, JSOUP
+>JDK11, Maven, PostgreSQL, JDBC, Quartz, JSOUP
 
 Доступ к интерфейсу через *REST API*.
 
